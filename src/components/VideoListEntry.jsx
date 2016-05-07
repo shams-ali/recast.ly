@@ -5,9 +5,7 @@ var VideoListEntry = (props) => (
     </div>
     <div className="media-body">
 
-      <div className="video-list-entry-title" onClick = {function() { 
-        ReactDOM.render(<VideoPlayer video={props.video} />, document.getElementById('player')); 
-      }} >{props.video.snippet.title}</div>
+      <div className="video-list-entry-title" onClick = {props.onClickChange(props.songNum)}>{props.video.snippet.title}</div>
 
       <div className="video-list-entry-detail">{props.video.snippet.description}</div>
     </div>

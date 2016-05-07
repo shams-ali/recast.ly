@@ -1,11 +1,12 @@
+var count = 0;
 var VideoList = (props) => (
   <div className="video-list media">
     {props.videos.map(vid =>
-      <VideoListEntry video={vid} />
+      <VideoListEntry video={vid} songNum= {count++} onClickChange={props.onClickChange} />
       )}
   </div>
 );
-
+ 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
 VideoList.propTypes = {
