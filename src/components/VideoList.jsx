@@ -1,4 +1,4 @@
-var count = 0;
+
 var VideoList = (props) => (
   <div className="video-list media">
     {props.videos.map(vid =>

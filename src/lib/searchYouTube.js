@@ -1,4 +1,5 @@
 var searchYouTube = (options, callback) => {
+  console.log(options,callback);
   var settings = {
     key: options.key || window.YOUTUBE_API_KEY,
     q: options.query || 'cats',
@@ -12,7 +13,7 @@ var searchYouTube = (options, callback) => {
     url: 'https://www.googleapis.com/youtube/v3/search/',
     type: 'GET',
     data: settings,
-    success: (data) => callback(data.items),
+    success: (data) => { if (callback) { callback(data.items); } },
     error: (e) => console.log(e, 'did not work')
   });
 

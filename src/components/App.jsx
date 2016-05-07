@@ -4,34 +4,49 @@ class App extends React.Component {
     this.state = {currentVideo: window.exampleVideoData[0],
       videos: window.exampleVideoData
     };
+    this.search = _.debounce(this.youTubeSearch.bind(this), 500);
 
   }
 
   componentDidMount() {
-
+    console.log(this);
     var context = this.changeVideo.bind(this);
-
-    
     this.props.searchYouTube({}, function(x) {
-      console.log(x[0]);
       context(x[0], x);
+      console.log(x);
     });
   }
-
-
 
   changeVideo(newVideo, videoList) {
-    //console.log('state changed to', x, ' from', this.state.currentVideo);
-    this.setState({
-      currentVideo: newVideo,
-      videos: videoList
-    });
-    //console.log(this.state.currentVideo);
+    console.log(newVideo, VideoList);
+    if (videoList === undefined || !videoList instanceof Object) {
+      this.setState({
+        currentVideo: newVideo
+      });
+    } else {
+      this.setState({
+        currentVideo: newVideo,
+        videos: videoList
+      });
+    }
   }
+
+  youTubeSearch(query) {
+    console.log('query', query);
+    if (query) {
+      console.log(this);
+      console.log(this.searchYouTube);
+      var binded = this.changeVideo.bind(this);
+      this.props.searchYouTube({query: query}, function(x) {
+        binded(x[0], x);
+      });
+    }
+  }
+
   render() {
     return (
     <div>
-      <Nav />
+      <Nav context={this.search}/>
       <div className='col-md-7'>
         <VideoPlayer id ='player' video={this.state.currentVideo}/>
       </div>
