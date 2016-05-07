@@ -1,8 +1,8 @@
 var searchYouTube = (options, callback) => {
   var settings = {
-    key: options.key,
-    q: options.query,
-    maxResults: options.max,
+    key: options.key || window.YOUTUBE_API_KEY,
+    q: options.query || 'cats',
+    maxResults: options.max || 5,
     part: 'snippet',
     type: 'video',
     videoEmbeddable: true
@@ -15,6 +15,7 @@ var searchYouTube = (options, callback) => {
     success: (data) => callback(data.items),
     error: (e) => console.log(e, 'did not work')
   });
+
 };
 
 window.searchYouTube = searchYouTube;

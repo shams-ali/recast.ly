@@ -6,7 +6,7 @@ var VideoListEntry = (props) => (
     <div className="media-body">
 
       <div className="video-list-entry-title" onClick = {() => props.clicker(props.video)}
-	  >{props.video.snippet.title}</div>
+	>{props.video.snippet.title}</div>
 
       <div className="video-list-entry-detail">{props.video.snippet.description}</div>
     </div>
