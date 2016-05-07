@@ -2,7 +2,7 @@ var count = 0;
 var VideoList = (props) => (
   <div className="video-list media">
     {props.videos.map(vid =>
-      <VideoListEntry video={vid} songNum= {count++} onClickChange={props.onClickChange} />
+      <VideoListEntry video={vid} clicker={props.clicker} />
       )}
   </div>
 );
